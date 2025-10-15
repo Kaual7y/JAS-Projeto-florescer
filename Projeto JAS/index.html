@@ -29,8 +29,12 @@
 
     <!-- ===== APOIO SEÇÃO ===== -->
     <section class="partners">
-      <img src="./img/rede2.jpg" alt="Logo Parceiro" />
+      <a href="https://www.redecidada.org.br/" target="_blank" rel="noopener noreferrer">
+  <img src="./img/rede2.jpg" alt="Logo Parceiro" />
+      </a>
+      <a href="https://www2.recife.pe.gov.br/" target="_blank" rel="noopener noreferrer">
       <img src="./img/img_0728.jpg" alt="Logo Parceiro" />
+      </a>
     </section>
 
     <!-- ===== SERVIÇOS ===== -->
@@ -98,7 +102,7 @@
           />
           <h3>Rede de Apoio</h3>
           <p>
-            Uma comunidade que oferece suporte emocional, prático em momentos de
+            Uma comunidade que oferece suporte emocional e prático em momentos de
             adversidade para ajudar sua saúde mental.
           </p>
         </div>
@@ -121,12 +125,11 @@
     </section>
 
     <!-- ===== CTA FINAL ===== -->
-    <section class="cta">
+    <section class="cta" id="contato">
       <div class="cta-content">
         <h2>Transforme Dor em <span>Recomeço</span></h2>
         <p>
-          Se você ou alguém que conhece precisa de ajuda, estamos aqui para
-          acolher.
+          Se você ou alguém que conhece precisa de ajuda, estamos aqui para acolher.
         </p>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLScSffwrZTISU5ffpLubY-ZTr4l4Fw4pPeIAACbTTs0uyp4fkQ/viewform?usp=dialog"
@@ -191,8 +194,47 @@
       </div>
 
       <div class="footer-bottom">
-        © 2025 Vozes que se Libertam. Todos os direitos reservados. 
+        Um Projeto da Rede Cidadã em parceria com a Prefeitura do Recife. 
+        <p> © 2025 Vozes que se Libertam. Todos os direitos reservados.</p>
       </div>
     </footer>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const saibaMaisBtn = document.querySelector('.hero .btn');
+        const contatoBtn = document.querySelector('#contato .btn');
+
+        function scrollSuaveParaElemento(elemento, duracao = 1200) {
+          const posicaoAlvo = elemento.getBoundingClientRect().top + window.pageYOffset;
+          const inicio = window.pageYOffset;
+          const distancia = posicaoAlvo - inicio;
+          let inicioTempo = null;
+
+          function animarScroll(tempoAtual) {
+            if (!inicioTempo) inicioTempo = tempoAtual;
+            const tempoPassado = tempoAtual - inicioTempo;
+            const progresso = Math.min(tempoPassado / duracao, 1);
+
+            const ease = progresso < 0.5
+              ? 4 * progresso * progresso * progresso
+              : 1 - Math.pow(-2 * progresso + 2, 3) / 2;
+
+            window.scrollTo(0, inicio + distancia * ease);
+
+            if (tempoPassado < duracao) {
+              requestAnimationFrame(animarScroll);
+            }
+          }
+
+          requestAnimationFrame(animarScroll);
+        }
+
+        saibaMaisBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          scrollSuaveParaElemento(contatoBtn, 1500);
+        });
+      });
+    </script>
   </body>
 </html>
